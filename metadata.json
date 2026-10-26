@@ -1,0 +1,6 @@
+{
+  "name": "খুলনা লিজেন্ড স্কুল | Khulna Legend School",
+  "description": "খুলনা লিজেন্ড স্কুল ওয়েব পোর্টাল - ২০২৭ শিক্ষাবর্ষে ভর্তি চলছে এবং ভর্তি উৎসব ২০২৬। মানসম্মত আধুনিক ও নৈতিক শিক্ষার এক আদর্শ প্রতিষ্ঠান।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
