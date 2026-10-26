@@ -4,11 +4,10 @@ import { SCHOOL_INFO } from '../data/initialData';
 
 interface FooterProps {
   onOpenAdmin: () => void;
-  onOpenExport: () => void;
   onScrollTo: (id: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenExport, onScrollTo }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onScrollTo }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -23,11 +22,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenExport, onScr
           {/* Col 1: Brand Wordmark & Mission */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold">
-                <GraduationCap className="w-6 h-6 text-amber-300" />
+              <div className="w-11 h-11 rounded-2xl bg-emerald-700 text-white flex items-center justify-center font-bold shadow-md">
+                <GraduationCap className="w-7 h-7 text-amber-300" />
               </div>
               <div>
-                <span className="text-xl font-bold text-white tracking-tight font-sans block">
+                <span className="text-xl sm:text-2xl font-bold text-white tracking-tight font-sans block">
                   খুলনা লিজেন্ড স্কুল
                 </span>
                 <span className="text-xs text-stone-400 uppercase tracking-widest block -mt-0.5">
@@ -37,17 +36,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenExport, onScr
             </div>
 
             <p className="text-xs sm:text-sm text-stone-400 leading-relaxed max-w-sm">
-              সন্তানের ভবিষ্যৎ যেখানে নিরাপদ, সেখানে সম্ভাবনার দুয়ার খোলা! মানসম্মত আধুনিক কারিকুলাম ও নৈতিক মূল্যবোধের সমন্বয়ে খুলনা বিভাগের একটি আদর্শ বিদ্যাপীঠ।
+              সন্তানের ভবিষ্যৎ যেখানে নিরাপদ, সেখানে সম্ভাবনার দুয়ার খোলা! মানসম্মত আধুনিক কারিকুলাম ও দ্বীনি নৈতিক মূল্যবোধের সমন্বয়ে খুলনা বিভাগের একটি নির্ভরযোগ্য আদর্শ বিদ্যাপীঠ।
             </p>
 
-            <div className="pt-2 text-xs text-stone-400 space-y-1">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="pt-2 text-xs text-stone-400 space-y-1.5">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>{SCHOOL_INFO.address.fullBn}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>জেনারেল হেল্পলাইন: 01336-559955</span>
+                <span>প্রধান হেল্পলাইন: 01336-559955</span>
               </div>
             </div>
           </div>
@@ -57,11 +56,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenExport, onScr
             <span className="text-xs font-bold text-white uppercase tracking-wider block">
               দ্রুত লিঙ্কসমূহ
             </span>
-            <ul className="text-xs space-y-2">
+            <ul className="text-xs space-y-2.5">
               <li>
                 <button
                   onClick={() => onScrollTo('hero')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
                 >
                   মূল পাতা (Home)
                 </button>
@@ -69,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenExport, onScr
               <li>
                 <button
                   onClick={() => onScrollTo('festival')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
                 >
                   ভর্তি উৎসব ২০২৬ (Festival)
                 </button>
@@ -77,15 +76,23 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenExport, onScr
               <li>
                 <button
                   onClick={() => onScrollTo('features')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
                 >
                   আমাদের বৈশিষ্ট্যসমূহ (Features)
                 </button>
               </li>
               <li>
                 <button
+                  onClick={() => onScrollTo('gallery')}
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
+                >
+                  ফটো গ্যালারি (Photo Gallery)
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onScrollTo('admissions')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
                 >
                   ২০২৭ শিক্ষাবর্ষে ভর্তি (Admissions)
                 </button>
@@ -93,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenExport, onScr
               <li>
                 <button
                   onClick={() => onScrollTo('contact')}
-                  className="hover:text-amber-300 transition-colors cursor-pointer"
+                  className="hover:text-amber-300 transition-colors cursor-pointer text-left"
                 >
                   যোগাযোগ ও হটলাইন (Helpline)
                 </button>
@@ -124,31 +131,33 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenExport, onScr
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+        {/* Clean, Prestigious Institutional Bottom Bar (Free of debug code/passwords) */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-400">
           <div>
             © ২০২৬-২০২৭ খুলনা লিজেন্ড স্কুল (Khulna Legend School). সর্বস্বত্ব সংরক্ষিত।
           </div>
 
-          <div className="flex items-center gap-6">
-            <button
-              onClick={onOpenExport}
-              className="hover:text-amber-300 transition-colors cursor-pointer"
-            >
-              সিঙ্গেল HTML কোড
-            </button>
-            <span aria-hidden="true">·</span>
+          <div className="flex items-center gap-5">
+            <span className="hover:text-stone-200 transition-colors">
+              গোপনীয়তা নীতি
+            </span>
+            <span aria-hidden="true" className="text-stone-600">·</span>
+            <span className="hover:text-stone-200 transition-colors">
+              আচরণবিধি
+            </span>
+            <span aria-hidden="true" className="text-stone-600">·</span>
             <button
               onClick={onOpenAdmin}
-              className="inline-flex items-center gap-1 hover:text-white transition-colors cursor-pointer text-stone-400"
+              className="inline-flex items-center gap-1.5 text-stone-400 hover:text-amber-300 transition-colors cursor-pointer"
+              title="বিদ্যালয় প্রশাসনিক পোর্টাল"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>এডমিন ড্যাশবোর্ড (admin123)</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+              <span>প্রশাসনিক প্রবেশদ্বার</span>
             </button>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true" className="text-stone-600">·</span>
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-1 hover:text-white transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 text-stone-400 hover:text-white transition-colors cursor-pointer"
             >
               <span>উপরে যান</span>
               <ArrowUp className="w-3.5 h-3.5" />

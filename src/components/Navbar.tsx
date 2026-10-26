@@ -1,184 +1,155 @@
-import React, { useState } from 'react';
-import { GraduationCap, ShieldCheck, PhoneCall, Menu, X } from 'lucide-react';
+import React from 'react';
+import { GraduationCap, ShieldCheck, PhoneCall, Clock, MapPin, Sparkles, Send } from 'lucide-react';
+import { SCHOOL_INFO } from '../data/initialData';
 
 interface NavbarProps {
   onOpenAdmin: () => void;
-  onOpenExport: () => void;
+  onOpenExport?: () => void;
   onScrollTo: (id: string) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onOpenExport, onScrollTo }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, onScrollTo }) => {
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200">
-      {/* Announcement Kicker Bar */}
-      <div className="bg-emerald-900 text-emerald-100 text-xs py-1.5 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 font-medium">
-          <div className="flex items-center gap-2 truncate">
-            <span className="inline-block w-2 h-2 rounded-full bg-amber-400"></span>
-            <span className="font-semibold text-amber-300">ভর্তি উৎসব ২০২৬:</span>
-            <span className="truncate">বুধবার, ২৮ অক্টোবর '২৬, সকাল ৯:৩০ মি. — নতুন শিক্ষাবর্ষের বিশেষ আয়োজন!</span>
+    <header className="sticky top-0 z-40 bg-white shadow-md border-b border-stone-200">
+      
+      {/* 1. Top Institutional Info & Hotlines Strip */}
+      <div className="bg-emerald-950 text-emerald-100 text-xs py-2 px-4 border-b border-emerald-900">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          
+          <div className="flex items-center gap-3 text-[11px] sm:text-xs">
+            <span className="flex items-center gap-1 text-amber-300 font-bold">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>ভর্তি উৎসব ২০২৬:</span>
+            </span>
+            <span className="text-stone-200 truncate">
+              বুধবার, ২৮ অক্টোবর '২৬, সকাল ৯:৩০ মি. (ক্যাম্পাস প্রাঙ্গণ)
+            </span>
           </div>
-          <div className="hidden sm:flex items-center gap-4 text-xs shrink-0">
-            <span className="text-emerald-200">হটলাইন: 01336-559955</span>
-            <span aria-hidden="true" className="text-emerald-700">|</span>
-            <button
-              onClick={onOpenExport}
-              className="text-amber-300 hover:text-white transition-colors cursor-pointer"
-              title="এক ক্লিকে সিঙ্গেল-ফাইল HTML কোড ডাউনলোড"
-            >
-              সিঙ্গেল HTML কোড
-            </button>
-            <span aria-hidden="true" className="text-emerald-700">|</span>
-            <button
-              onClick={onOpenAdmin}
-              className="inline-flex items-center gap-1 text-emerald-200 hover:text-white transition-colors cursor-pointer"
-            >
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>এডমিন লগইন</span>
-            </button>
+
+          <div className="flex items-center gap-4 text-[11px] sm:text-xs text-stone-300">
+            <div className="flex items-center gap-1.5">
+              <PhoneCall className="w-3.5 h-3.5 text-amber-400" />
+              <span>হটলাইন: </span>
+              <a href="tel:01336559955" className="font-bold text-white hover:underline">
+                01336-559955
+              </a>
+            </div>
+            <span className="text-emerald-800 hidden sm:inline">|</span>
+            <div className="hidden md:flex items-center gap-1 text-emerald-200">
+              <Clock className="w-3.5 h-3.5 text-amber-400" />
+              <span>সকাল ৮:০০ - বিকাল ৪:০০</span>
+            </div>
           </div>
+
         </div>
       </div>
 
-      {/* Main Top Bar: Strict 3-zone contract */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-8 h-18">
-          {/* Zone 1: Single text wordmark */}
+      {/* 2. Main Brand Header Bar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+        <div className="flex items-center justify-between gap-4">
+          
+          {/* Logo & School Titles */}
           <a
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
               onScrollTo('hero');
             }}
-            className="flex items-center gap-2.5 text-slate-900 whitespace-nowrap shrink-0 group"
+            className="flex items-center gap-3 group"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-800 to-emerald-600 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
-              <GraduationCap className="w-6 h-6 text-amber-300" />
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-900 via-emerald-800 to-emerald-600 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform shrink-0">
+              <GraduationCap className="w-7 h-7 text-amber-300" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tight text-emerald-950 font-sans">
+            <div>
+              <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-emerald-950 font-sans leading-none">
                 খুলনা লিজেন্ড স্কুল
-              </span>
-              <span className="text-[11px] text-stone-500 font-medium tracking-wider -mt-1 uppercase">
-                Khulna Legend School
-              </span>
+              </div>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-xs font-bold text-amber-800 tracking-wider uppercase font-sans">
+                  Khulna Legend School
+                </span>
+                <span className="text-stone-300 text-xs">·</span>
+                <span className="text-xs text-stone-500 hidden sm:inline">
+                  খালিশপুর, খুলনা
+                </span>
+              </div>
             </div>
           </a>
 
-          {/* Zone 2: 4–5 concise single-line nav links */}
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-stone-700">
-            <button
-              onClick={() => onScrollTo('festival')}
-              className="hover:text-emerald-800 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              ভর্তি উৎসব ২০২৬
-            </button>
-            <button
-              onClick={() => onScrollTo('features')}
-              className="hover:text-emerald-800 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              আমাদের বৈশিষ্ট্যসমূহ
-            </button>
-            <button
-              onClick={() => onScrollTo('admissions')}
-              className="hover:text-emerald-800 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              ২০২৭ শিক্ষাবর্ষে ভর্তি
-            </button>
-            <button
-              onClick={() => onScrollTo('contact')}
-              className="hover:text-emerald-800 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              যোগাযোগ ও হটলাইন
-            </button>
-          </nav>
-
-          {/* Zone 3: 1 primary action */}
+          {/* Quick Apply CTA Button */}
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => onScrollTo('apply-form')}
-              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-emerald-700 rounded-lg hover:bg-emerald-800 active:scale-98 transition-all shadow-sm cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-emerald-800 hover:bg-emerald-900 active:scale-98 transition-all rounded-xl shadow-md cursor-pointer whitespace-nowrap"
             >
-              অনলাইন ভর্তি আবেদন
-            </button>
-
-            {/* Mobile menu toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <Send className="w-4 h-4 text-amber-300" />
+              <span>ভর্তি আবেদন করুন</span>
             </button>
           </div>
+
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-stone-200 bg-white px-4 py-4 space-y-3">
-          <button
-            onClick={() => {
-              onScrollTo('festival');
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 px-3 text-stone-800 hover:bg-emerald-50 rounded-md font-medium text-sm"
-          >
-            ভর্তি উৎসব ২০২৬
-          </button>
-          <button
-            onClick={() => {
-              onScrollTo('features');
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 px-3 text-stone-800 hover:bg-emerald-50 rounded-md font-medium text-sm"
-          >
-            আমাদের বৈশিষ্ট্যসমূহ
-          </button>
-          <button
-            onClick={() => {
-              onScrollTo('admissions');
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 px-3 text-stone-800 hover:bg-emerald-50 rounded-md font-medium text-sm"
-          >
-            ২০২৭ শিক্ষাবর্ষে ভর্তি
-          </button>
-          <button
-            onClick={() => {
-              onScrollTo('contact');
-              setMobileMenuOpen(false);
-            }}
-            className="block w-full text-left py-2 px-3 text-stone-800 hover:bg-emerald-50 rounded-md font-medium text-sm"
-          >
-            যোগাযোগ ও হেল্পলাইন
-          </button>
+      {/* 3. Prominent Header Navigation Bar (মেনু লিস্ট সরাসরি হেডারে স্থাপিত - সাইড ড্রয়ারের পরিবর্তে) */}
+      <nav className="bg-emerald-900 text-white border-t border-emerald-800/80 shadow-inner">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-start sm:justify-between overflow-x-auto scrollbar-none py-1 gap-1 sm:gap-2">
+            
+            <div className="flex items-center gap-1 shrink-0">
+              <button
+                onClick={() => onScrollTo('hero')}
+                className="px-3 py-2 text-xs sm:text-sm font-semibold hover:bg-emerald-800 hover:text-amber-300 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+              >
+                মূল পাতা
+              </button>
+              <button
+                onClick={() => onScrollTo('festival')}
+                className="px-3 py-2 text-xs sm:text-sm font-semibold hover:bg-emerald-800 text-amber-300 hover:text-white rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+              >
+                ভর্তি উৎসব ২০২৬
+              </button>
+              <button
+                onClick={() => onScrollTo('features')}
+                className="px-3 py-2 text-xs sm:text-sm font-semibold hover:bg-emerald-800 hover:text-amber-300 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+              >
+                আমাদের বৈশিষ্ট্যসমূহ
+              </button>
+              <button
+                onClick={() => onScrollTo('gallery')}
+                className="px-3 py-2 text-xs sm:text-sm font-semibold hover:bg-emerald-800 hover:text-amber-300 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+              >
+                ফটো গ্যালারি
+              </button>
+              <button
+                onClick={() => onScrollTo('admissions')}
+                className="px-3 py-2 text-xs sm:text-sm font-semibold hover:bg-emerald-800 hover:text-amber-300 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+              >
+                ২০২৭ শিক্ষাবর্ষে ভর্তি
+              </button>
+              <button
+                onClick={() => onScrollTo('contact')}
+                className="px-3 py-2 text-xs sm:text-sm font-semibold hover:bg-emerald-800 hover:text-amber-300 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+              >
+                যোগাযোগ ও হটলাইন
+              </button>
+            </div>
 
-          <div className="pt-3 border-t border-stone-100 flex flex-col gap-2">
-            <button
-              onClick={() => {
-                onOpenAdmin();
-                setMobileMenuOpen(false);
-              }}
-              className="flex items-center justify-center gap-2 py-2 text-sm font-medium text-emerald-800 bg-emerald-50 rounded-md"
-            >
-              <ShieldCheck className="w-4 h-4 text-emerald-700" />
-              <span>এডমিন ড্যাশবোর্ড (admin123)</span>
-            </button>
-            <button
-              onClick={() => {
-                onOpenExport();
-                setMobileMenuOpen(false);
-              }}
-              className="text-xs text-center text-stone-500 py-1"
-            >
-              সিঙ্গেল ফাইল HTML ডাউনলোড ও গাইড
-            </button>
+            {/* Admin entry in header */}
+            <div className="shrink-0 pl-2 border-l border-emerald-800">
+              <button
+                onClick={onOpenAdmin}
+                className="flex items-center gap-1 px-3 py-1.5 text-xs font-semibold text-emerald-200 hover:text-white hover:bg-emerald-800 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+                title="প্রশাসনিক এডমিন পোর্টাল"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                <span>এডমিন</span>
+              </button>
+            </div>
+
           </div>
         </div>
-      )}
+      </nav>
+
     </header>
   );
 };

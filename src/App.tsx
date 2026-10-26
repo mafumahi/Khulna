@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
+import { HeroSlider } from './components/HeroSlider';
+import { MovingNoticeBoard } from './components/MovingNoticeBoard';
 import { FestivalNotice } from './components/FestivalNotice';
 import { Features } from './components/Features';
+import { Gallery } from './components/Gallery';
 import { AdmissionsInfo } from './components/AdmissionsInfo';
 import { AdmissionForm } from './components/AdmissionForm';
 import { ContactSection } from './components/ContactSection';
@@ -26,66 +28,78 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-amber-50/20 text-stone-800 font-sans selection:bg-emerald-600 selection:text-white">
-      {/* 3-Zone Top Navigation */}
+      
+      {/* 1. Header with Prominent Navigation Bar (মেনু লিস্ট সরাসরি হেডারে স্থাপিত) */}
       <Navbar
         onOpenAdmin={() => setIsAdminOpen(true)}
-        onOpenExport={() => setIsExportOpen(true)}
         onScrollTo={scrollToSection}
+      />
+
+      {/* 2. Moving Dynamic Notice Board (চলমান নোটিশ বোর্ড) */}
+      <MovingNoticeBoard
+        onApplyClick={() => scrollToSection('apply-form')}
+        onFestivalClick={() => scrollToSection('festival')}
       />
 
       {/* Main Content Flow */}
       <main className="flex-1">
-        {/* 1. Hero Section / Welcome Banner */}
-        <Hero
-          onApplyClick={() => scrollToSection('apply-form')}
-          onFestivalClick={() => scrollToSection('festival')}
+        
+        {/* 3. Interactive Hero Slide Show (শুরুতেই ইন্টারেক্টিভ স্লাইড শো) */}
+        <HeroSlider
+          onScrollTo={scrollToSection}
         />
 
-        {/* 2. Admission Festival 2026 Notice (ভর্তি উৎসব ২০২৬) */}
+        {/* 4. Admission Festival 2026 Notice (ভর্তি উৎসব ২০২৬ - ২৮ অক্টোবর) */}
         <FestivalNotice
           onRegisterClick={() => scrollToSection('apply-form')}
         />
 
-        {/* 3. Why Choose Us / Key Features (আমাদের বৈশিষ্ট্যসমূহ) */}
+        {/* 5. Key Features (আমাদের অনন্য বৈশিষ্ট্যসমূহ) */}
         <Features
           onLearnMore={() => scrollToSection('admissions')}
         />
 
-        {/* 4. Admissions 2027 Information (২০২৭ শিক্ষাবর্ষে ভর্তি চলছে) */}
+        {/* 6. School Photo Gallery (ফটো গ্যালারি) */}
+        <Gallery />
+
+        {/* 7. Admissions 2027 Information (২০২৭ শিক্ষাবর্ষে ভর্তি চলছে) */}
         <AdmissionsInfo
           onApplyClick={() => scrollToSection('apply-form')}
         />
 
-        {/* 6. Online Admission / Inquiry Form */}
+        {/* 8. Online Admission / Inquiry Form (অনলাইন ভর্তি ও অনুসন্ধান ফরম) */}
         <AdmissionForm
           onInquirySubmitted={(inquiry) => setLastSubmitted(inquiry)}
         />
 
-        {/* 5. Contact & Branch-wise Helplines (যোগাযোগ ও হটলাইন) */}
+        {/* 9. Contact & Branch-wise Helplines (ক্যাম্পাস ঠিকানা ও হটলাইন) */}
         <ContactSection />
+
       </main>
 
-      {/* Quiet Institutional Footer */}
+      {/* 10. Clean Institutional Footer (অসামঞ্জস্যপূর্ণ কোড ও পাসওয়ার্ড মুক্ত) */}
       <Footer
         onOpenAdmin={() => setIsAdminOpen(true)}
-        onOpenExport={() => setIsExportOpen(true)}
         onScrollTo={scrollToSection}
       />
 
-      {/* Built-in Admin Panel Modal (Strict Password admin123) */}
+      {/* Built-in Admin Panel Modal (পাসওয়ার্ড: admin123) */}
       <AdminModal
         isOpen={isAdminOpen}
         onClose={() => setIsAdminOpen(false)}
       />
 
-      {/* Standalone Single-File HTML Exporter & Firebase Setup Guide */}
-      <SingleFileExportModal
-        isOpen={isExportOpen}
-        onClose={() => setIsExportOpen(false)}
-      />
+      {/* Standalone Single-File HTML Exporter & Guide (If needed) */}
+      {isExportOpen && (
+        <SingleFileExportModal
+          isOpen={isExportOpen}
+          onClose={() => setIsExportOpen(false)}
+        />
+      )}
 
       {/* Floating WhatsApp Quick Chat Button */}
       <FloatingWhatsApp />
+
     </div>
   );
 }
